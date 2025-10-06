@@ -1,0 +1,179 @@
+/* === Variáveis de cores === */
+:root {
+  --base-color: #f4f4f4;
+  --base-variant: rgba(255,255,255,0.25);
+  --text-color: #111;
+  --accent-color: #1e90ff;
+  --btn-hover: #0d6efd;
+  --popup-success: #0f0;
+  --popup-error: #f33;
+}
+
+.darkmode {
+  --base-color: #121212;
+  --base-variant: rgba(255,255,255,0.05);
+  --text-color: #f0f0f0;
+  --accent-color: #3b82f6;
+  --btn-hover: #2563eb;
+  --popup-success: #0f0;
+  --popup-error: #f66;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--base-color);
+  color: var(--text-color);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* === Dark Mode Switch === */
+#theme-switch {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+#theme-switch svg:first-child { display: block; }
+#theme-switch svg:last-child { display: none; }
+.darkmode #theme-switch svg:first-child { display: none; }
+.darkmode #theme-switch svg:last-child { display: block; }
+
+/* === Login Card === */
+.login-card {
+  background: var(--base-variant);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: fadeInUp 1s ease-out;
+  position: relative;
+}
+.login-card h2 {
+  margin-bottom: 25px;
+  color: var(--accent-color);
+}
+
+/* === Inputs === */
+.login-card input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 20px 0;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: transparent;
+  color: var(--text-color);
+  outline: none;
+  transition: all 0.3s ease;
+}
+.login-card input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* === Botão ENTRAR === */
+#enviar {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--accent-color);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+#enviar:hover {
+  background-color: var(--btn-hover);
+  transform: scale(1.03);
+  box-shadow: 0 0 12px var(--accent-color);
+}
+
+.btn-voltar {
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: fixed;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #3b82f6, #06b6d4);
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 999;
+  animation: subtleGlow 3s ease-in-out infinite;
+}
+
+.btn-voltar:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4), 0 4px 10px rgba(6, 182, 212, 0.3);
+}
+
+@keyframes subtleGlow {
+  0% {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.35);
+  }
+  100% {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* === Pop-up === */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: var(--base-variant);
+  backdrop-filter: blur(15px);
+  padding: 20px 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  color: var(--text-color);
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  z-index: 2000;
+}
+.popup.show {
+  transform: translate(-50%, -50%) scale(1);
+  animation: pulse 0.4s ease;
+}
+#popup-close {
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+  color: var(--accent-color);
+}
+
+/* === Animações === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(0.9);}
+  50% { transform: translate(-50%, -50%) scale(1.05);}
+  100% { transform: translate(-50%, -50%) scale(1);}
+}
